@@ -19,6 +19,7 @@ const Container = styled.div`
   gap: 16px 10px;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: repeat(auto-fill);
+  margin-bottom: 60px;
 `;
 
 export default Content;
