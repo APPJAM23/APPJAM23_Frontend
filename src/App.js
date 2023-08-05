@@ -4,6 +4,7 @@ import { BrowserRouter } from "react-router-dom";
 import GlobalStyle from "./style/GlobalStyle";
 import { theme } from "./style/Theme";
 import { ThemeProvider } from "styled-components";
+import { RecoilRoot } from "recoil";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -20,10 +21,12 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <ThemeProvider theme={theme}>
-        <GlobalStyle />
-        <BrowserRouter>
-          <MainRouter />
-        </BrowserRouter>
+        <RecoilRoot>
+          <GlobalStyle />
+          <BrowserRouter>
+            <MainRouter />
+          </BrowserRouter>
+        </RecoilRoot>
       </ThemeProvider>
     </QueryClientProvider>
   );

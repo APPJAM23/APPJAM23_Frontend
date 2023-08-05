@@ -1,4 +1,6 @@
 const color = {
+  Primary: "#FF9A00",
+  Secondary: "#FFC265",
   gray900: "#21242C",
   gray850: "#292C35",
   gray800: "#373B44",
