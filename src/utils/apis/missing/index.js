@@ -18,7 +18,10 @@ export const findMissing = async () => {
   return (await instance.get("/missing/find")).data;
 };
 
-export const uploadImage = async (formData) => {
+export const uploadMissingImage = async (image) => {
+  const formData = new FormData();
+  formData.append("image", image);
+
   const response = await instance.post("/missing/image", formData, {
     headers: { "Content-Type": `multipart/form-data` },
   });

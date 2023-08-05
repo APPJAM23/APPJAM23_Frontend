@@ -2,14 +2,21 @@ import { styled } from "styled-components";
 import { theme } from "../style/Theme";
 import { useNavigate } from "react-router-dom";
 import Dropdown from "../components/Dropdown";
-import { datas } from "../constants/ReportMissing";
 import PageContainer from "../components/PageContainer";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import { getMissingList } from "../utils/apis/missing";
 
 const colors = theme.colors;
 const text = theme.text;
+
+const options = {
+  "전체보기": null,
+  "치매": "DEMENTIA",
+  "아동": "CHILD",
+  "장애인": "DISABLED",
+  "가출청소년": "TEENAGE_RUNAWAY"
+}
 
 const MissingListPage = () => {
   const [selectedOption, setSelectedOption] = useState({
@@ -17,9 +24,14 @@ const MissingListPage = () => {
     id: "",
   });
 
-  const { data } = useQuery(["", selectedOption.id], () =>
-    getMissingList(selectedOption.id)
+  const { data, refetch } = useQuery(["", selectedOption.id], () =>
+    getMissingList(options[selectedOption.option])
   );
+
+  useEffect(() => {
+    refetch();
+    console.log(selectedOption)
+  }, [selectedOption])
 
   return (
     <PageContainer title="실종자 리스트" subTitle="함께 찾아주세요.">
