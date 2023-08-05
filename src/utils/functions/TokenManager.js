@@ -6,7 +6,7 @@ export const setToken = (accessToken, expire_at) => {
   cookies.save("accessToken", accessToken, {
     path: "/",
     expires: expires,
-    httpOnly: process.env.REACT_PUBLIC_HTTP_ONLY === "true",
+    httpOnly: process.env.REACT_APP_PUBLIC_HTTP_ONLY === "true",
   });
 };
 
