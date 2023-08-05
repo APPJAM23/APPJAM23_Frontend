@@ -1,6 +1,7 @@
 import { styled } from "styled-components";
 import { theme } from "../style/Theme";
 import { useNavigate } from "react-router-dom";
+import Dropdown from "../components/Dropdown";
 
 const datas = [
     {
@@ -44,8 +45,13 @@ const text = theme.text;
 const MissingList = () => {
     return(
         <Container>
-            <Title style={text.title01}>실종자 리스트</Title>
-            <SubTitle style={text.subTitle}>함께 찾아주세요.</SubTitle>
+            <div style={{display: 'flex', gap: '60px'}}>
+                <div>
+                    <Title style={text.title01}>실종자 리스트</Title>
+                    <SubTitle style={text.subTitle}>함께 찾아주세요.</SubTitle>
+                </div>
+                <Dropdown />
+            </div>
             <ListContainer>
                 {datas.map((data) => {
                     return <List data={data}/>
