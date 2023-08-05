@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { theme } from "../style/Theme";
 import { styled } from "styled-components";
+import backBtn from "../assets/backBtn.svg";
 
 const Dropdown = ({ setSelectedOption, selectedOption }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -20,14 +21,11 @@ const Dropdown = ({ setSelectedOption, selectedOption }) => {
     <div>
       <Container isOpen={isOpen}>
         <div className="dropdown-header" onClick={toggleDropdown}>
-          {selectedOption || "카테고리"}
-          <span
-            className={`arrow ${isOpen ? "open" : ""}`}
-            style={{ float: "right" }}
-          >
-            {/* <img src="/images/dropdownArrow.png" alt="" /> */}
-            <div>↓</div>
-          </span>
+            {selectedOption || '카테고리'}&nbsp;&nbsp;
+            <span className={`arrow ${isOpen ? 'open' : ''}`} style={{float: 'right'}}>
+                {/* <img src="/images/dropdownArrow.png" alt="" /> */}
+                <img src={backBtn } style={{rotate: '-90deg'}}/>
+            </span>
         </div>
       </Container>
       {isOpen && (
