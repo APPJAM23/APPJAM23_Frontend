@@ -14,7 +14,6 @@ const Container = styled.div`
     transition: 0.3s;
     ${props => props.isOn ? `
     &:hover {
-      background: var(--main-color);
       color: black;
     }
   ` : null}
@@ -35,7 +34,6 @@ const Options = styled.div`
 `
 
 const Option = styled.div`
-    color: var(--main-color);
     opacity: 0.8;
 `
 const Dropdown = () => {
