@@ -17,6 +17,18 @@ const color = {
   BLACK: "#000000",
 };
 
+const textStyle = {
+  title01 : 28,
+  title02 : 20,
+  subTitle : 18,
+  body01 : 16,
+  button01: 20,
+  button02 : 16,
+  caption01 : 16,
+  caption02 : 12,
+};
+
 export const theme = {
   colors: color,
+  text : textStyle,
 };
