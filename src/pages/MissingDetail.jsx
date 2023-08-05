@@ -1,75 +1,71 @@
+import { useRef } from "react";
 import { styled } from "styled-components";
-import { theme } from "../style/Theme";
-import { Gender } from "./MissingList";
-import { useNavigate, useLocation } from "react-router-dom";
-import backBtn from "../assets/backBtn.svg";
+import Webcam from "react-webcam";
+import ShotBtn from "../assets/shotBtn.svg";
+import { useQuery } from 'react-query';
+import { findMissing } from '../utils/apis/missing';
+import { useNavigate } from 'react-router-dom';
 
-const MissingDetail = () => {
-    const text = theme.text;
-    const navigate = useNavigate();
-    const location = useLocation();
-    const data = location.state;
-    const year = new Date().getFullYear();
+const videoConstraints = {
+  width: 390,
+  height: 700,
+  facingMode: "user"
+};
 
-    return(
-        <Container>
-            <div style={{display: 'flex', gap: '5px', alignItems: 'center', marginBottom: '12px' }}>
-                {/* 아이콘 추가해야됨 */}
-                <img src={backBtn} />
-                <div style={theme.text.subTitle} onClick={()=>{navigate(-1)}}>돌아가기</div>
-                <div style={{fontSize: theme.text.subTitle, color: theme.colors.gray500, marginLeft: 'auto'}}>수정</div>
-            </div>
-            <Image img={data.pictureUrl}/>
-            <Head>
-                <div style={text.title01}>{data.name}</div>
-                <div style={{display: 'flex', gap: '24px'}}>
-                    <Gender gender={data.gender} style={text.title02}>{data.gender}</Gender>
-                    <div style={text.title02}>현재 {}세</div>
-                    {/* 현재 나이: 지금 연도 - 실종된 연도 당시 나이 */}
-                </div>
-            </Head>
-            <Content>
-                <Label>키</Label>
-                <Value>128cm</Value>
-                <Label>몸무게</Label>
-                <Value>34kg</Value>
-                <Label>실종 날짜</Label>
-                <Value>2023년 6월 7일</Value>
-                <Label>실종 장소</Label>
-                <Value>경상남도 창원시 준서읍</Value>
-                <Label>특이 사항</Label>
-                <Value>{data.character}</Value>
-            </Content>
-        </Container>
-    );
+const FindMissing = () => {
+  const webcamRef = useRef(null);
+  const navigate = useNavigate();
+
+  const { refetch } = useQuery([], findMissing, {
+    enabled: false,
+    onSuccess: (data) => {
+      navigate(`/home/detail/${data.id}`)
+    }
+  })
+
+  return (
+    <>
+      <div style={{ marginTop: '15px' }}>
+        <Webcam
+          audio={false}
+          ref={webcamRef}
+          screenshotFormat="image/jpeg"
+          videoConstraints={videoConstraints}
+        />
+        <Filter>
+          <img alt='capture' onClick={() => refetch()} src={ShotBtn} width={72} />
+        </Filter>
+      </div>
+    </>
+  );
 }
-const Container = styled.div`
-    margin: 18px 20px;
+
+const Filter = styled.div`
+  width: 100vw;
+  height: 120px;
+  background: rgba(33, 36, 44, 0.70);
+  backdrop-filter: blur(8px);
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  bottom: 67px;
+  padding: 0 40px;
 `
-const Image = styled.div`
-    width: 350px;
-    height: 360px;
-    background: red;
-    border-radius: 6px;
-    // background: ${props => `url(${props.img}) center/ cover no-repeat`};
-    margin-bottom: 16px;
+const Photo = styled.div`
+  width: 100%;
+  height: 100%;
+  z-index: 80;
+  position: absolute;
+  background: ${props => `url(${props.img}) center/ cover no-repeat`};
+  bottom: 0;
+`;
+const SmallPhoto = styled.div`
+  width: 48px;
+  height: 48px;
+  border-radius: 6px;
+  z-index: 50;
+  background: ${props => `url(${props.img}) center/ cover no-repeat`}
 `
-const Head = styled.div`
-    display: flex;
-    align-items: center;
-    gap: 130px;
-    margin-bottom: 28px;
-`
-const Content = styled.div`
-    display: grid;
-    grid-template-rows: repeat(6, 45px);
-    grid-template-columns: 100px 266px;
-    justify-items: baseline;
-`
-const Label = styled.div`
-    color: ${theme.colors.gray900}
-`
-const Value = styled.div`
-    color: ${theme.colors.gray700}
-`
-export default MissingDetail;
+export default FindMissing;

@@ -1,17 +1,22 @@
+import { useNavigate } from "react-router-dom";
 import { styled } from "styled-components";
 
 const List = ({ data }) => {
+  const navigate = useNavigate();
+
   return (
-    <div>
-      <Image img={data.img} />
+    <div onClick={() => navigate(`/home/detail/${data.id}`)}>
+      <Image img={data?.pictureUrl} />
       <div style={{ display: "flex", gap: "60px", margin: "8px 0" }}>
-        <Name>{data.name}</Name>
+        <Name>{data?.name}</Name>
         <div style={{ display: "flex", gap: "12px", alignItems: "center" }}>
-          <Gender gender={data.gender}>{data.gender}</Gender>
-          <Age>{data.age}세</Age>
+          <Gender gender={data?.gender === "MALE" ? "남" : "여"}>
+            {data?.gender === "MALE" ? "남" : "여"}
+          </Gender>
+          <Age>{data?.age}세</Age>
         </div>
       </div>
-      <Char>{data.character}</Char>
+      <Char>{data?.specialNote}</Char>
     </div>
   );
 };

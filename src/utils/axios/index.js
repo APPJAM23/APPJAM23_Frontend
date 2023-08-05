@@ -1,7 +1,7 @@
 import axios from "axios";
 import { getToken } from "../functions/TokenManager";
 
-const BASE_URL = process.env.REACT_PUBLIC_BASE_URL;
+const BASE_URL = process.env.REACT_APP_PUBLIC_BASE_URL;
 
 const instance = axios.create({
   baseURL: "https://port-0-qrc-3prof2llkxojagg.sel4.cloudtype.app/",

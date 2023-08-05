@@ -1,14 +1,16 @@
 import { styled } from "styled-components";
 import ReportMissingBox from "./MisingReportBox";
-import { datas } from "../../constants/ReportMissing";
+import { useQuery } from "react-query";
+import { getMissingList } from "../../utils/apis/missing";
 import List from "../common/List";
 
 const Content = () => {
+  const { data } = useQuery("", () => getMissingList());
   return (
     <Container>
       <ReportMissingBox />
-      {datas.map((data, idx) => {
-        return <List key={idx} data={data} />;
+      {data?.map((data) => {
+        return <List data={data} />;
       })}
     </Container>
   );

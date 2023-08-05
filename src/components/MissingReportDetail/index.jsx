@@ -1,12 +1,25 @@
 import { useRef, useState } from "react";
 import { styled } from "styled-components";
 import ImgBox from "./ImgBox";
+import { uploadImage, writeMissing } from "../../utils/apis/missing";
+import { useMutation } from "react-query";
 
 const Content = () => {
   const fileInput = useRef(null);
 
-  const [upLoadImg, setUpLoadImg] = useState("");
-  const [preview, setPreview] = useState("");
+  const [upLoadImg, setUpLoadImg] = useState();
+  const [preview, setPreview] = useState();
+  const [name, setName] = useState();
+  const [gender, setGender] = useState();
+  const [age, setAge] = useState();
+  const [height, setHeight] = useState();
+  const [weight, setWeight] = useState();
+  const [category, setCategory] = useState();
+  const [missingPlace, setMissingPlace] = useState();
+  const [clothes, setClothes] = useState();
+  const [specialNote, setSpecialNote] = useState();
+  const [missingDate, setMissingDate] = useState();
+  const [pictureUrl, setPictureUrl] = useState();
 
   const imgOnChange = (e) => {
     if (e.target.files[0]) {
@@ -24,6 +37,50 @@ const Content = () => {
       }
     };
     reader.readAsDataURL(e.target.files[0]);
+  };
+
+  const upLoadFile = async () => {
+    if (!upLoadImg) return;
+    const formData = new FormData();
+    formData.append("image", upLoadImg);
+    uploadImg(formData);
+    return;
+  };
+
+  const { mutate: uploadImg } = useMutation(
+    (formData) => uploadImage(formData),
+    {
+      onSuccess: (data) => {
+        setPictureUrl(data.url);
+      },
+    }
+  );
+
+  const { mutate: onReportMissing } = useMutation(
+    () =>
+      writeMissing({
+        pictureUrl: pictureUrl,
+        name: name,
+        age: age,
+        gender: gender,
+        height: height,
+        weight: weight,
+        missingDate: missingDate,
+        missingPlace: missingPlace,
+        missingClothes: clothes,
+        specialNote: specialNote,
+        type: category,
+      }),
+    {
+      onSuccess: (data) => {
+        // setPictureUrl(data.url);
+      },
+    }
+  );
+
+  const onReportClickHandle = async () => {
+    await upLoadFile();
+    await onReportMissing();
   };
 
   return (
@@ -52,7 +109,7 @@ const Content = () => {
         <Title>
           이름<Red>*</Red>
         </Title>
-        <Input />
+        <Input onChange={(e) => setName(e.target.value)} />
       </Wrapper>
 
       <Wrapper>
@@ -61,10 +118,22 @@ const Content = () => {
         </Title>
         <HorizontalityWrapper>
           <label>
-            <input type="radio" name="gender" value="male" /> 남자
+            <input
+              type="radio"
+              name="gender"
+              value="male"
+              onClick={() => setGender("MALE")}
+            />
+            남자
           </label>
           <label>
-            <input type="radio" name="gender" value="female" /> 여자
+            <input
+              type="radio"
+              name="gender"
+              value="female"
+              onClick={() => setGender("FEMALE")}
+            />
+            여자
           </label>
         </HorizontalityWrapper>
       </Wrapper>
@@ -74,7 +143,7 @@ const Content = () => {
           나이<Red>*</Red>
         </Title>
         <div>
-          <MiniInput />
+          <MiniInput onChange={(e) => setAge(Number(e.target.value))} />
           <p>세</p>
         </div>
       </Wrapper>
@@ -85,7 +154,7 @@ const Content = () => {
             키<Red>*</Red>
           </Title>
           <div>
-            <MiniInput />
+            <MiniInput onChange={(e) => setHeight(Number(e.target.value))} />
             <p>cm</p>
           </div>
         </Wrapper>
@@ -94,7 +163,7 @@ const Content = () => {
             몸무게<Red>*</Red>
           </Title>
           <div>
-            <MiniInput />
+            <MiniInput onChange={(e) => setWeight(Number(e.target.value))} />
             <p>kg</p>
           </div>
         </Wrapper>
@@ -106,20 +175,48 @@ const Content = () => {
         </Title>
         <HorizontalityWrapper>
           <label>
-            <input type="radio" name="category" value="DEMENTIA" /> 치매
+            <input
+              type="radio"
+              name="category"
+              value="DEMENTIA"
+              onClick={() => setCategory("DEMENTIA")}
+            />
+            치매
           </label>
           <label>
-            <input type="radio" name="category" value="CHILD" /> 아동
+            <input
+              type="radio"
+              name="category"
+              value="CHILD"
+              onClick={() => setCategory("CHILD")}
+            />
+            아동
           </label>
           <label>
-            <input type="radio" name="category" value="DISABLED" /> 장애인
+            <input
+              type="radio"
+              name="category"
+              value="DISABLED"
+              onClick={() => setCategory("DISABLED")}
+            />
+            장애인
           </label>
           <label>
-            <input type="radio" name="category" value="TEENAGE_RUNAWAY" />
+            <input
+              type="radio"
+              name="category"
+              value="TEENAGE_RUNAWAY"
+              onClick={() => setCategory("TEENAGE_RUNAWAY")}
+            />
             청소년
           </label>
           <label>
-            <input type="radio" name="category" value="ETC" />
+            <input
+              type="radio"
+              name="category"
+              value="ETC"
+              onClick={() => setCategory("ETC")}
+            />
             기타
           </label>
         </HorizontalityWrapper>
@@ -129,26 +226,30 @@ const Content = () => {
         <Title>
           실종 날짜<Red>*</Red>
         </Title>
-        <DateInput type="date" />
+        <DateInput
+          type="date"
+          onChange={(e) => setMissingDate(e.target.value)}
+        />
       </Wrapper>
+
       <Wrapper>
         <Title>
           실종 위치<Red>*</Red>
         </Title>
-        <Input />
+        <Input onChange={(e) => setMissingPlace(e.target.value)} />
       </Wrapper>
 
       <Wrapper>
         <Title>인상착의</Title>
-        <Text />
+        <Text onChange={(e) => setClothes(e.target.value)} />
       </Wrapper>
 
       <Wrapper>
         <Title>특이사항</Title>
-        <Text />
+        <Text onChange={(e) => setSpecialNote(e.target.value)} />
       </Wrapper>
 
-      <ReportButton>실종 신고하기</ReportButton>
+      <ReportButton onClick={onReportClickHandle}>실종 신고하기</ReportButton>
     </Container>
   );
 };
