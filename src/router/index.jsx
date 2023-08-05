@@ -1,5 +1,5 @@
 import { Route, Routes } from "react-router-dom";
-import MissingList from "../pages/MissingList";
+import MissingListPage from "../pages/MissingListPage";
 import TabLayout from "../pages/TabLayout";
 import MissingReportPage from "../pages/MissingReportPage";
 import MissingDetail from "../pages/MissingDetail";
@@ -11,7 +11,7 @@ const MainRouter = () => {
     <Routes>
       <Route element={<TabLayout />}>
         {/* 탭이 들어가야 하는 페이지들은 여기에 :) */}
-        <Route element={<MissingList />} path="/home" />
+        <Route element={<MissingListPage />} path="/home" />
         <Route element={<MissingDetail />} path="/home/detail/:id" />
         <Route element={<MissingReportPage />} path="/missing_report" />
         <Route element={<MissingReportDetailPage />} path="/report_detail" />
