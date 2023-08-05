@@ -19,7 +19,7 @@ const MissingDetail = () => {
                 <div style={theme.text.subTitle} onClick={()=>{navigate(-1)}}>돌아가기</div>
                 <div style={{fontSize: theme.text.subTitle, color: theme.colors.gray500, marginLeft: 'auto'}}>수정</div>
             </div>
-            <Image img={data.imgl}/>
+            <Image img={data.pictureUrl}/>
             <Head>
                 <div style={text.title01}>{data.name}</div>
                 <div style={{display: 'flex', gap: '24px'}}>
