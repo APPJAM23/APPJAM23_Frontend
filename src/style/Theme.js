@@ -18,14 +18,14 @@ const color = {
 };
 
 const textStyle = {
-  title01 : 28,
-  title02 : 20,
-  subTitle : 18,
-  body01 : 16,
-  button01: 20,
-  button02 : 16,
-  caption01 : 16,
-  caption02 : 12,
+  title01 : {fontSize: '28px', lineHeight: '38px'},
+  title02 : {fontSize: '20px', lineHeight: '30px'},
+  subTitle : {fontSize: '18px', lineHeight: '28px'},
+  body01 : {fontSize: '16px', lineHeight: '24px'},
+  button01: {fontSize: '20px', lineHeight: '30px'},
+  button02 : {fontSize: '16px', lineHeight: '24px'},
+  caption01 : {fontSize: '16px', lineHeight: '24px'},
+  caption02 : {fontSize: '12px', lineHeight: '18px'},
 };
 
 export const theme = {
