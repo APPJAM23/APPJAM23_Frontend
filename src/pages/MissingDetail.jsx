@@ -1,10 +1,16 @@
 import { styled } from "styled-components";
 import { theme } from "../style/Theme";
-import { Gender } from "./MissingListPage";
+import { Gender } from "./MissingList";
 import { useNavigate, useLocation } from "react-router-dom";
 import backBtn from "../assets/backBtn.svg";
 
 const MissingDetail = () => {
+    const text = theme.text;
+    const navigate = useNavigate();
+    const location = useLocation();
+    const data = location.state;
+    const year = new Date().getFullYear();
+
     return(
         <Container>
             <div style={{display: 'flex', gap: '5px', alignItems: 'center', marginBottom: '12px' }}>
@@ -37,48 +43,33 @@ const MissingDetail = () => {
         </Container>
     );
 }
->>>>>>> sunjo
 const Container = styled.div`
-  margin: 18px 20px;
-`;
+    margin: 18px 20px;
+`
 const Image = styled.div`
-  width: 350px;
-  height: 360px;
-  background: red;
-  border-radius: 6px;
-  // background: ${(props) => `url(${props.img}) center/ cover no-repeat`};
-  margin-bottom: 16px;
-`;
+    width: 350px;
+    height: 360px;
+    background: red;
+    border-radius: 6px;
+    // background: ${props => `url(${props.img}) center/ cover no-repeat`};
+    margin-bottom: 16px;
+`
 const Head = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 130px;
-  margin-bottom: 28px;
-`;
+    display: flex;
+    align-items: center;
+    gap: 130px;
+    margin-bottom: 28px;
+`
 const Content = styled.div`
-  display: grid;
-  grid-template-rows: repeat(6, 45px);
-  grid-template-columns: 100px 266px;
-  justify-items: baseline;
-`;
+    display: grid;
+    grid-template-rows: repeat(6, 45px);
+    grid-template-columns: 100px 266px;
+    justify-items: baseline;
+`
 const Label = styled.div`
-  color: ${theme.colors.gray900};
-`;
+    color: ${theme.colors.gray900}
+`
 const Value = styled.div`
-  color: ${theme.colors.gray700};
-`;
-
-const Button = styled.button`
-  background: ${({ theme }) => theme.colors.Primary};
-  border-radius: 6px;
-  color: ${({ theme }) => theme.colors.WHITE};
-  border: none;
-  width: 90vw;
-  height: 48px;
-  font-size: 16px;
-  line-height: 24px;
-  position: fixed;
-  bottom: 90px;
-`;
-
+    color: ${theme.colors.gray700}
+`
 export default MissingDetail;
