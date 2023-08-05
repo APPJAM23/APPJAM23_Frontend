@@ -28,7 +28,7 @@ const Container = styled.div`
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    margin-top: 19px;
+    margin-top: 50px;
 `;
 const UserName = styled.div`
     margin: 18px 0;
@@ -37,7 +37,7 @@ const ProfileBox = styled.div`
     position: absolute;
     z-index: 50;
     text-align: center;
-    top: 19px
+    top: 100px
 `;
 const ProfileImg = styled.div`
     width: 132px; height: 132px;
@@ -55,9 +55,9 @@ const Box = styled.div`
     margin-top: 65px;
 `
 const Square = styled.div`
-    width: 175px; height: 175px;
+    width: 175px; height: 138px;
     position: absolute;
-    top: 222px;
+    top: 300px;
     display: flex;
     align-items: center;
     justify-content: center;

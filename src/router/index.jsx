@@ -4,6 +4,7 @@ import TabLayout from "../pages/TabLayout";
 import MissingReportPage from "../pages/MissingReportPage";
 import MissingDetail from "../pages/MissingDetail";
 import MissingReportDetailPage from "../pages/MissingReportDetailPage";
+import Profile from "../pages/Profile";
 
 const MainRouter = () => {
   return (
@@ -14,6 +15,7 @@ const MainRouter = () => {
         <Route element={<MissingDetail />} path="/home/detail/:id" />
         <Route element={<MissingReportPage />} path="/missing_report" />
         <Route element={<MissingReportDetailPage />} path="/report_detail" />
+        <Route element={<Profile />} path="/profile" />
       </Route>
     </Routes>
   );
