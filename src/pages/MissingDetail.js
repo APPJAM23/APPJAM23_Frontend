@@ -1,16 +1,23 @@
 import { styled } from "styled-components";
 import { theme } from "../style/Theme";
 import { Gender } from "./MissingList";
-import { useLocation } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const MissingDetail = () => {
     const text = theme.text;
+    const navigate = useNavigate();
     const location = useLocation();
     const data = location.state;
     const year = new Date().getFullYear();
 
     return(
         <Container>
+            <div style={{display: 'flex', gap: '5px', alignItems: 'center', marginBottom: '12px' }}>
+                {/* 아이콘 추가해야됨 */}
+                <div>←</div>
+                <div style={theme.text.subTitle} onClick={()=>{navigate(-1)}}>돌아가기</div>
+                <div style={{fontSize: theme.text.subTitle, color: theme.colors.gray500, marginLeft: 'auto'}}>수정</div>
+            </div>
             <Image img={data.imgl}/>
             <Head>
                 <div style={text.title01}>{data.name}</div>
@@ -31,8 +38,6 @@ const MissingDetail = () => {
                 <Value>경상남도 창원시 준서읍</Value>
                 <Label>특이 사항</Label>
                 <Value>{data.character}</Value>
-                <Label>실종 날짜</Label>
-                <Value>{data.missing_date}</Value>
             </Content>
         </Container>
     );
@@ -50,6 +55,7 @@ const Image = styled.div`
 `
 const Head = styled.div`
     display: flex;
+    align-items: center;
     gap: 130px;
     margin-bottom: 28px;
 `
