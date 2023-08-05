@@ -5,7 +5,6 @@ import { Home, EsCalator, Person, Camera } from "../../assets";
 import TabItem from "./TabItem";
 
 const Tab = () => {
-  const [activetab, setActiveTab] = useState("/home");
   const [currentLastUrl, setCurrentLastUrl] = useState("/home");
 
   const navigate = useNavigate();
@@ -13,13 +12,12 @@ const Tab = () => {
 
   const tabInfo = [
     { title: "홈", Icon: Home, path: "/home" },
-    { title: "실종 신고", Icon: EsCalator, path: "/missing_condition" },
+    { title: "실종 신고", Icon: EsCalator, path: "/missing_report" },
     { title: "실종자 찾기", Icon: Person, path: "/find_missing" },
     { title: "프로필", Icon: Camera, path: "/profile" },
   ];
 
   const onClickTab = (idx) => {
-    setActiveTab(tabInfo[idx].path);
     navigate(tabInfo[idx].path);
   };
 
@@ -27,8 +25,10 @@ const Tab = () => {
     const splitUrl = locationHook?.pathname?.split("/") ?? null;
     const location =
       splitUrl?.length > 1 ? splitUrl[splitUrl.length - 1] : null;
-    setCurrentLastUrl(`/${location}`);
-    console.log(currentLastUrl, activetab);
+    location === "report_detail"
+      ? setCurrentLastUrl(`/missing_report`)
+      : setCurrentLastUrl(`/${location}`);
+    window.scrollTo(0, 0);
   }, [locationHook]);
 
   return (
