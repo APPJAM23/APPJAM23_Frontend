@@ -68,7 +68,7 @@ const List = ({data}) => {
                     <Age style={text.body01}>{data.age}세</Age>
                 </div>
             </div>
-            <Char>{data.character}</Char>
+            <Char style={text.caption02}>{data.character}</Char>
         </div>
     );
 };
@@ -109,7 +109,6 @@ const Age = styled.span`
     color: ${colors.gray600};
 `
 const Char = styled.div`
-    font-size: ${text.caption02}px;
     color: ${colors.gray500};
 `
 export {Gender};
