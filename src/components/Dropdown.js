@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { theme } from "../style/Theme";
 import { styled } from "styled-components";
-
+import backBtn from "../assets/backBtn.svg";
 
 const Container = styled.div`
-    width: 100px;
+    width: 130px;
     height: 40px;
     background: ${theme.colors.gray100};
     color: ${theme.colors.gray600};
@@ -21,7 +21,7 @@ const Container = styled.div`
 `;
 
 const Options = styled.div`
-    width: 100px;
+    width: 130px;
     display: flex; flex-direction: column; gap: 20px;
     padding: 8px;
     border-radius: 6px;
@@ -60,10 +60,10 @@ const Dropdown = () => {
     <div>
         <Container isOpen={isOpen} onChange={handleSelect}>
         <div className="dropdown-header" onClick={toggleDropdown}>
-            {selectedOption || '카테고리'}
+            {selectedOption || '카테고리'}&nbsp;&nbsp;
             <span className={`arrow ${isOpen ? 'open' : ''}`} style={{float: 'right'}}>
                 {/* <img src="/images/dropdownArrow.png" alt="" /> */}
-                <div>↓</div>
+                <img src={backBtn } style={{rotate: '-90deg'}}/>
             </span>
         </div>
         </Container>

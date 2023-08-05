@@ -2,6 +2,7 @@ import { styled } from "styled-components";
 import { theme } from "../style/Theme";
 import { Gender } from "./MissingList";
 import { useNavigate, useLocation } from "react-router-dom";
+import backBtn from "../assets/backBtn.svg";
 
 const MissingDetail = () => {
     const text = theme.text;
@@ -14,7 +15,7 @@ const MissingDetail = () => {
         <Container>
             <div style={{display: 'flex', gap: '5px', alignItems: 'center', marginBottom: '12px' }}>
                 {/* 아이콘 추가해야됨 */}
-                <div>←</div>
+                <img src={backBtn} />
                 <div style={theme.text.subTitle} onClick={()=>{navigate(-1)}}>돌아가기</div>
                 <div style={{fontSize: theme.text.subTitle, color: theme.colors.gray500, marginLeft: 'auto'}}>수정</div>
             </div>

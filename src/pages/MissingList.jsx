@@ -37,6 +37,72 @@ const datas = [
         weight: 34,
         missing_date: '2023.06.07',
     },
+    {
+        id: 2,
+        name: "정소라",
+        gender: "남",
+        age: 6,
+        character: "물감 묻히고 다님, 항상 웃음",
+        img: 'https://cdn.pixabay.com/photo/2014/11/30/14/11/cat-551554_640.jpg',
+        height: 128,
+        weight: 34,
+        missing_date: '2023.06.07',
+    },
+    {
+        id: 2,
+        name: "정소라",
+        gender: "남",
+        age: 6,
+        character: "물감 묻히고 다님, 항상 웃음",
+        img: 'https://cdn.pixabay.com/photo/2014/11/30/14/11/cat-551554_640.jpg',
+        height: 128,
+        weight: 34,
+        missing_date: '2023.06.07',
+    },
+    {
+        id: 2,
+        name: "정소라",
+        gender: "남",
+        age: 6,
+        character: "물감 묻히고 다님, 항상 웃음",
+        img: 'https://cdn.pixabay.com/photo/2014/11/30/14/11/cat-551554_640.jpg',
+        height: 128,
+        weight: 34,
+        missing_date: '2023.06.07',
+    },
+    {
+        id: 2,
+        name: "정소라",
+        gender: "남",
+        age: 6,
+        character: "물감 묻히고 다님, 항상 웃음",
+        img: 'https://cdn.pixabay.com/photo/2014/11/30/14/11/cat-551554_640.jpg',
+        height: 128,
+        weight: 34,
+        missing_date: '2023.06.07',
+    },
+    {
+        id: 2,
+        name: "정소라",
+        gender: "남",
+        age: 6,
+        character: "물감 묻히고 다님, 항상 웃음",
+        img: 'https://cdn.pixabay.com/photo/2014/11/30/14/11/cat-551554_640.jpg',
+        height: 128,
+        weight: 34,
+        missing_date: '2023.06.07',
+    },
+    {
+        id: 2,
+        name: "정소라",
+        gender: "남",
+        age: 6,
+        character: "물감 묻히고 다님, 항상 웃음",
+        img: 'https://cdn.pixabay.com/photo/2014/11/30/14/11/cat-551554_640.jpg',
+        height: 128,
+        weight: 34,
+        missing_date: '2023.06.07',
+    },
 ]
 
 const colors = theme.colors;
@@ -45,7 +111,7 @@ const text = theme.text;
 const MissingList = () => {
     return(
         <Container>
-            <div style={{display: 'flex', gap: '60px'}}>
+            <div style={{display: 'flex', gap: '30px'}}>
                 <div>
                     <Title style={text.title01}>실종자 리스트</Title>
                     <SubTitle style={text.subTitle}>함께 찾아주세요.</SubTitle>
@@ -94,7 +160,7 @@ const SubTitle = styled.div`
 const ListContainer = styled.div`
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-gap: 16px 12px;
+    grid-gap: 20px 12px;
     margin: 16px 0;
 `;
 const Image = styled.div`
