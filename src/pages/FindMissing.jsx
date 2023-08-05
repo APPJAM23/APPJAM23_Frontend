@@ -26,7 +26,7 @@ const FindMissing = () => {
             <div style={{marginTop: '15px'}}>
                 { visability && 
                     <> 
-                        <img src={backBtn} onClick={()=>{setVisability(false)}} />
+                        <img src={backBtn} onClick={()=>{setVisability(false)}} style={{position: 'absolute', zIndex: 200, left: 20, top: 30, width: '30px'}}/>
                         <Photo img={imgSrc}/>
                     </>
                 }
@@ -60,10 +60,11 @@ const Filter = styled.div`
 `
 const Photo = styled.div`
     width: 100%;
-    height: 800px;
+    height: 100%;
     z-index: 80;
     position: absolute;
     background: ${props => `url(${props.img}) center/ cover no-repeat`};
+    bottom: 0;
 `;
 const SmallPhoto = styled.div`
     width: 48px;

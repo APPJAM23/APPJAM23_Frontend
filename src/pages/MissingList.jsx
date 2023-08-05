@@ -111,13 +111,9 @@ const text = theme.text;
 const MissingList = () => {
     return(
         <Container>
-            <div style={{display: 'flex', gap: '30px'}}>
-                <div>
-                    <Title style={text.title01}>실종자 리스트</Title>
-                    <SubTitle style={text.subTitle}>함께 찾아주세요.</SubTitle>
-                </div>
-                <Dropdown />
-            </div>
+            <Title style={text.title01}>실종자 리스트</Title>
+            <SubTitle style={text.subTitle}>함께 찾아주세요.</SubTitle>
+            <Dropdown />
             <ListContainer>
                 {datas.map((data) => {
                     return <List data={data}/>
