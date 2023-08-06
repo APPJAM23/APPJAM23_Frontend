@@ -10,7 +10,7 @@ const colors = theme.colors;
 const text = theme.text;
 
 const MissingListPage = () => {
-  const [selectedOption, setSelectedOption] = useState("");
+  const [selectedOption, setSelectedOption] = useState("child");
 
   return (
     <PageContainer title="실종자 리스트" subTitle="함께 찾아주세요.">
@@ -20,9 +20,11 @@ const MissingListPage = () => {
           selectedOption={selectedOption}
         />
         <ListContainer>
-          {datas.map((data) => {
-            return <List data={data} />;
-          })}
+        {datas
+        // .filter((data) => data.label === selectedOption)
+        .map((data) => {
+            return <List data={data}/>
+        })}
         </ListContainer>
       </>
     </PageContainer>

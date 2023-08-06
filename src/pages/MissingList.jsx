@@ -2,108 +2,7 @@ import { styled } from "styled-components";
 import { theme } from "../style/Theme";
 import { useNavigate } from "react-router-dom";
 import Dropdown from "../components/Dropdown";
-
-const datas = [
-    {
-        id: 0,
-        name: "정소라",
-        gender: "여",
-        age: 6,
-        character: "물감 묻히고 다님, 항상 웃음",
-        img: 'https://cdn.pixabay.com/photo/2014/11/30/14/11/cat-551554_640.jpg',
-        height: 128,
-        weight: 34,
-        missing_date: '2023.06.07',
-    },
-    {
-        id: 1,
-        name: "정소라",
-        gender: "여",
-        age: 6,
-        character: "물감 묻히고 다님, 항상 웃음",
-        img: 'https://cdn.pixabay.com/photo/2014/11/30/14/11/cat-551554_640.jpg',
-        height: 128,
-        weight: 34,
-        missing_date: '2023.06.07',
-    },
-    {
-        id: 2,
-        name: "정소라",
-        gender: "남",
-        age: 6,
-        character: "물감 묻히고 다님, 항상 웃음",
-        img: 'https://cdn.pixabay.com/photo/2014/11/30/14/11/cat-551554_640.jpg',
-        height: 128,
-        weight: 34,
-        missing_date: '2023.06.07',
-    },
-    {
-        id: 2,
-        name: "정소라",
-        gender: "남",
-        age: 6,
-        character: "물감 묻히고 다님, 항상 웃음",
-        img: 'https://cdn.pixabay.com/photo/2014/11/30/14/11/cat-551554_640.jpg',
-        height: 128,
-        weight: 34,
-        missing_date: '2023.06.07',
-    },
-    {
-        id: 2,
-        name: "정소라",
-        gender: "남",
-        age: 6,
-        character: "물감 묻히고 다님, 항상 웃음",
-        img: 'https://cdn.pixabay.com/photo/2014/11/30/14/11/cat-551554_640.jpg',
-        height: 128,
-        weight: 34,
-        missing_date: '2023.06.07',
-    },
-    {
-        id: 2,
-        name: "정소라",
-        gender: "남",
-        age: 6,
-        character: "물감 묻히고 다님, 항상 웃음",
-        img: 'https://cdn.pixabay.com/photo/2014/11/30/14/11/cat-551554_640.jpg',
-        height: 128,
-        weight: 34,
-        missing_date: '2023.06.07',
-    },
-    {
-        id: 2,
-        name: "정소라",
-        gender: "남",
-        age: 6,
-        character: "물감 묻히고 다님, 항상 웃음",
-        img: 'https://cdn.pixabay.com/photo/2014/11/30/14/11/cat-551554_640.jpg',
-        height: 128,
-        weight: 34,
-        missing_date: '2023.06.07',
-    },
-    {
-        id: 2,
-        name: "정소라",
-        gender: "남",
-        age: 6,
-        character: "물감 묻히고 다님, 항상 웃음",
-        img: 'https://cdn.pixabay.com/photo/2014/11/30/14/11/cat-551554_640.jpg',
-        height: 128,
-        weight: 34,
-        missing_date: '2023.06.07',
-    },
-    {
-        id: 2,
-        name: "정소라",
-        gender: "남",
-        age: 6,
-        character: "물감 묻히고 다님, 항상 웃음",
-        img: 'https://cdn.pixabay.com/photo/2014/11/30/14/11/cat-551554_640.jpg',
-        height: 128,
-        weight: 34,
-        missing_date: '2023.06.07',
-    },
-]
+import { datas } from "../constants/ReportMissing";
 
 const colors = theme.colors;
 const text = theme.text;
@@ -115,7 +14,9 @@ const MissingList = () => {
             <SubTitle style={text.subTitle}>함께 찾아주세요.</SubTitle>
             <Dropdown />
             <ListContainer>
-                {datas.map((data) => {
+                {datas
+                .filter((data) => console.log(data))
+                .map((data) => {
                     return <List data={data}/>
                 })}
             </ListContainer>
@@ -129,7 +30,7 @@ const List = ({data}) => {
     return(
         <div onClick={()=>{navigate(`detail/${data.id}`, {state : data})}}>
             <Image img={data.img} />
-            <div style={{display: 'flex', gap: '60px', margin: '8px 0'}}>
+            <div style={{display: 'flex', gap: '52px', margin: '8px 0'}}>
                 <Name style={text.subTitle}>{data.name}</Name>
                 <div style={{display: 'flex', gap: '12px', alignItems: 'center'}}>
                     <Gender style={text.body01} gender={data.gender} >{data.gender}</Gender>
