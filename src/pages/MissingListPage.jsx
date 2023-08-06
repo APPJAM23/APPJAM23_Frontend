@@ -2,15 +2,24 @@ import { styled } from "styled-components";
 import { theme } from "../style/Theme";
 import { useNavigate } from "react-router-dom";
 import Dropdown from "../components/Dropdown";
-import { datas } from "../constants/ReportMissing";
 import PageContainer from "../components/PageContainer";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useQuery } from "react-query";
+import { getMissingList } from "../utils/apis/missing";
+import { datas } from "../constants/ReportMissing";
 
 const colors = theme.colors;
 const text = theme.text;
 
+const options = {
+  "전체보기": null,
+  "치매": "DEMENTIA",
+  "아동": "CHILD",
+  "장애인": "DISABLED",
+  "가출청소년": "TEENAGE_RUNAWAY"
+}
+
 const MissingListPage = () => {
-  const [selectedOption, setSelectedOption] = useState("child");
 
   return (
     <PageContainer title="실종자 리스트" subTitle="함께 찾아주세요.">
@@ -21,10 +30,11 @@ const MissingListPage = () => {
         />
         <ListContainer>
         {datas
-        // .filter((data) => data.label === selectedOption)
+        .filter((data) => data.label === selectedOption)
         .map((data) => {
             return <List data={data}/>
         })}
+
         </ListContainer>
       </>
     </PageContainer>
@@ -40,12 +50,15 @@ const List = ({ data }) => {
         navigate(`detail/${data.id}`, { state: data });
       }}
     >
-      <Image img={data.img} />
+      <Image img={data.pictureUrl} />
       <div style={{ display: "flex", gap: "60px", margin: "8px 0" }}>
         <Name style={text.subTitle}>{data.name}</Name>
         <div style={{ display: "flex", gap: "12px", alignItems: "center" }}>
-          <Gender style={text.body01} gender={data.gender}>
-            {data.gender}
+          <Gender
+            style={text.body01}
+            gender={data.gender === "MALE" ? "남" : "여"}
+          >
+            {data.gender === "MALE" ? "남" : "여"}
           </Gender>
           <Age style={text.body01}>{data.age}세</Age>
         </div>
